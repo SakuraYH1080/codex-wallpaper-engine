@@ -1,6 +1,7 @@
 # STATUS · codex-wallpaper-engine（2026-11-17 17:05 落盘）
 
 ## 当前版本
+- 已开源：<https://github.com/SakuraYH1080/codex-wallpaper-engine>（MIT，2026-11-18 发布）
 - src/inject/panel.js  VERSION 0.17.8 / FP native-21-no-note（开关点击已接线；开玻璃自动补值；已移除行内说明文字）
 - src/inject/runtime.js  VERSION 0.8.4（unmount 先调 panel.destroy；会话列表玻璃四旋钮）
 - src/host/injector.mjs  自愈重试（scheduleRetry + watchTick）
@@ -12,6 +13,32 @@
 ### 侧栏现在这组值（真机定稿，别随手改回大 blur）
 `sidebarAlpha 0 / sidebarBlur 0 / conversationSidebarAlpha 14 / conversationSidebarBlur 4 / conversationSidebarTint #0c1219 / conversationSidebarSaturate 114 / conversationSidebarBrightness 108 / conversationSidebarEdge true / cweUiAlpha 0.03 / cweUiAlphaMain 0.18 / settingsWindowTransparency 0 / settingsWindowBlur 3`（2026-11-18 14:34 实测 config.json；此前定稿的 22/14/26/16/180/0.30/0.24 已由用户在面板里改成这一版更薄的）
 实测：`nav` = `rgba(255,255,255,0.22)` + `blur(14px) saturate(1.4)`；会话列表 = `color(srgb .094 .094 .094 / 0.44)` + `blur(16px) saturate(1.25)`；主内容面暗底 over ≈ 0.079（`(0.30-0.24)/(1-0.24)`），壁纸透亮、字读得清。
+
+## 2026-11-18 18:47 · 把整个插件开源到 GitHub（0.10.4）
+
+**仓库**：<https://github.com/SakuraYH1080/codex-wallpaper-engine>（public，默认分支 main，78 个文件，6.7 MB）
+
+**为什么换账号**：`.codex-plugin/plugin.json` 里五处链接原本写 `github.com/geniusyfish`，但那个账号不存在（`gh api users/geniusyfish` → 404）。全部改成已登录的 `SakuraYH1080`；`interface.developerName` 仍保留 "geniusyfish" 作为显示名。
+
+**出处怎么标的（三处）**：
+1. `NOTICE`（新建）：写明上游 = elysia395/dsh-wallpaper-engine（MIT, Copyright (c) 2026 elysia395），列四项同源内容（整体观感与交互约定 / 设置项字段面 settingsVersion 8 与配置键命名分组 / 字体集格式 dsh-we/fontset@1 / 首次运行从 ~/.dsh-wallpaper-engine 迁移），并明确「这是功能移植，不是 fork，也没有复制上游源码文件」。
+2. `README.md` 新增「## 出处与致谢」一节，同一段话 + 指向 NOTICE。
+3. `LICENSE`（新建）：MIT，Copyright (c) 2026 SakuraYH1080 (geniusyfish)。
+另在 commit message 末尾写明上游来源。
+
+**发布前清掉的东西**：
+- `.gitignore`：`Escape from Dark.mp4`（557 MB）、`dist/`、`.backups/`、`docs/shots/`（22 MB / 30 张过程图）、`*.zip`、`node_modules/`、`*.log`。
+- 写死的个人绝对路径共 7 个文件：`tools/probe-preset-save.mjs` / `tools/test-visibility-fix.mjs` / `tools/probe-preset-tab.mjs` / `tools/probe-preset-apply.mjs`（import 改 `../src/host/cdp.mjs`）、`tools/shot-after-reload.mjs`（用 `import.meta.url` 推 ROOT）、`tools/test-mcp-rotation.mjs`（同上，spawn 用 `resolve(ROOT, "mcp/server.mjs")`）、`bin/smoke.mjs`（默认图改成 `process.env.CWE_SMOKE_IMAGE || ""` + 缺失时给可读提示）、`mcp/launch.sh`（`/Users/geniusyfish/.local/bin/node` → `"$HOME/.local/bin/node"`）。
+- `package.json` 去掉 `private: true`，补 author / homepage / repository / bugs / keywords，加 `test` 脚本串联五项测试。
+
+**验收**：
+- 远端 blob 78 = 本地 78；页面 200；`LICENSE` / `NOTICE` / `docs/shot-panel-0.16.0.png` raw 全 200。
+- `gh repo view` 显示 `licenseInfo.key = mit` → GitHub 认了许可证。
+- 敏感词扫描（sk- / ghp_ / github_pat_ / AKIA / BEGIN * PRIVATE KEY / password: / token=）零命中。
+- `geniusyfish` 只剩 4 个文件：plugin.json（developerName）、LICENSE、NOTICE、README —— 都是署名用途。
+- topics：cdp / codex / liquid-glass / live-wallpaper / macos / parallax / theme / wallpaper-engine。
+
+**教训**：README 里写的仓库地址、plugin.json 里的 homepage，都可能在账号改名或从未建仓时变成死链。发布前先跑 `gh api users/<name>` 验一遍，比事后改容易。
 
 ## 2026-11-18 18:36 · 「这些开关全部都没有用」—— onClick 里根本没有 toggle 分支（0.10.4 / panel 0.17.7）
 
