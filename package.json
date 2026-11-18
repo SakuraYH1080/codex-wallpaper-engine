@@ -1,0 +1,42 @@
+{
+  "name": "codex-wallpaper-engine",
+  "version": "0.10.4",
+  "description": "A wallpaper layer for the Codex desktop app: your own images and videos behind a translucent UI, with liquid glass, fonts, click FX, parallax and a mascot — injected over CDP without touching the app bundle.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "SakuraYH1080",
+    "url": "https://github.com/SakuraYH1080"
+  },
+  "homepage": "https://github.com/SakuraYH1080/codex-wallpaper-engine",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SakuraYH1080/codex-wallpaper-engine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SakuraYH1080/codex-wallpaper-engine/issues"
+  },
+  "keywords": [
+    "codex",
+    "wallpaper",
+    "live-wallpaper",
+    "liquid-glass",
+    "cdp",
+    "theme",
+    "parallax",
+    "desktop"
+  ],
+  "bin": {
+    "cwe": "./bin/cwe.mjs"
+  },
+  "scripts": {
+    "smoke": "node bin/smoke.mjs",
+    "test:renderer": "node tools/test-renderer.mjs",
+    "test": "node tools/test-server.mjs && node tools/test-presets.mjs && node tools/test-payload.mjs && node tools/test-faces.mjs && node tools/test-rotation.mjs",
+    "pack": "node tools/pack.mjs",
+    "start": "node bin/cwe.mjs start"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

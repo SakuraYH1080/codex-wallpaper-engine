@@ -1,0 +1,37 @@
+codex-wallpaper-engine
+Copyright (c) 2026 SakuraYH1080 (geniusyfish)
+Released under the MIT License. See LICENSE.
+
+---
+
+## 出处：dsh-wallpaper-engine
+
+本项目的功能蓝图来自另一个开源项目 —— 面向 DeepSeek Harness 的壁纸引擎：
+
+    dsh-wallpaper-engine
+    https://github.com/elysia395/dsh-wallpaper-engine
+    Copyright (c) 2026 elysia395
+    MIT License
+
+codex-wallpaper-engine 把它的功能面移植到了 Codex 桌面端：
+
+- 壁纸层 + 液态玻璃 + 特效 / 视差 / 头像的整体观感与交互约定
+- 设置项字段面（settingsVersion 8）、配置键命名、分组
+- 字体集格式 `dsh-we/fontset@1`
+- 首次运行时从 `~/.dsh-wallpaper-engine` 迁移已有壁纸与外观设置
+
+两边宿主环境完全不同（DSH 的插件跑在自己的 Web 界面里，Codex 的插件没有渲染扩展点），
+所以宿主层与注入层是重写的：Codex 这一侧通过 CDP 在运行时注入 DOM 与 CSS，不改 app.asar。
+换句话说，这是**功能移植**，不是 fork，也没有复制上游的源码文件；
+但字段命名、观感目标与交互约定沿用了上游，这部分同源关系在此写明。
+
+上游是 MIT，本项目同样以 MIT 发布。若仓库里出现与上游高度相似的片段，
+那属于移植带来的同源，按上游的 MIT 条款同样授权。
+
+## 上游项目的其它出处
+
+- 选择器命名沿用 Codex 桌面端自己的 `data-app-shell-*` 结构属性；
+  旧构建的类名前缀（`PageSurfaceLayout-`、`MainContentSurface-` 等）来自对
+  Codex 客户端的只读 DOM 观测，见 [docs/DOM-MAP.md](docs/DOM-MAP.md)。
+- CDP 客户端是零依赖实现，只用 Node 内建 WebSocket，没有引入第三方库。
+- 字体集 `assets/fontsets/compact.json` 里的字号刻度沿用 `dsh-we/fontset@1` 的字段名。

@@ -1,0 +1,18 @@
+# 本机素材：一个 557MB 的视频壁纸，不进仓库
+Escape from Dark.mp4
+*.mp4
+*.mov
+*.webm
+
+# 打包与备份产物
+dist/
+.backups/
+*.zip
+
+# 开发过程截图（30 张真机过程图，22MB）
+docs/shots/
+
+# 依赖与系统垃圾
+node_modules/
+.DS_Store
+*.log

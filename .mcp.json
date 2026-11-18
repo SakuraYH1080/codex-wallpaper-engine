@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "codex_wallpaper_engine": {
+      "command": "./mcp/launch.sh",
+      "args": [],
+      "cwd": ".",
+      "enabled": true,
+      "startup_timeout_sec": 30,
+      "tool_timeout_sec": 180,
+      "env_vars": [
+        "HOME",
+        "PATH",
+        "CODEX_MCP_NODE_PATH",
+        "CWE_DATA_DIR",
+        "DSH_WE_DATA_DIR"
+      ]
+    }
+  }
+}

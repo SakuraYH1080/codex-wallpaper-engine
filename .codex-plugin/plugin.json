@@ -1,0 +1,51 @@
+{
+  "name": "codex-wallpaper-engine",
+  "version": "0.10.4",
+  "description": "把自己的图片与视频做成 Codex 桌面端的壁纸层，再叠上液态玻璃、字体、粒子特效、视差与头像：注入一层位于界面之后的壁纸层，不改 app.asar，不动 Codex 任何原生功能。",
+  "author": {
+    "name": "geniusyfish",
+    "url": "https://github.com/SakuraYH1080"
+  },
+  "homepage": "https://github.com/SakuraYH1080/codex-wallpaper-engine",
+  "repository": "https://github.com/SakuraYH1080/codex-wallpaper-engine",
+  "license": "MIT",
+  "keywords": [
+    "Codex wallpaper",
+    "a wallpaper layer for Codex, injected over CDP",
+    "Codex 桌面壁纸",
+    "live wallpaper",
+    "animate wallpaper desktop",
+    "liquid glass",
+    "transparent Codex window",
+    "CDP injection",
+    "parallax wallpaper",
+    "Codex 主题"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "壁纸引擎",
+    "shortDescription": "给 Codex 桌面端加一层壁纸：活壁纸、液态玻璃、特效与视差，点 Dock 启动也自动带上，不影响原生功能。",
+    "longDescription": "codex-wallpaper-engine 通过 CDP 在 Codex 主窗口的 body 最前面插入一层 z-index 最低的壁纸容器，并把 Codex 自己的背景壳降为半透明，于是壁纸从界面之后透出来。壁纸只来自你自己上传的图片与视频，不连接任何第三方软件；附带液态玻璃面板、字体、点击与拖尾特效、鼠标视差、头像与吉祥物。所有改动只发生在运行时 DOM 与 CSS，不改动 app.asar，随卸载即完全复原。附带 launchd 看门人（macOS）：开一次 cwe autostart on，以后随手点 Dock 图标启动 Codex 也会自动带调试端口，壁纸随窗口出现，不必每次手动敲命令。",
+    "developerName": "geniusyfish",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Interactive"
+    ],
+    "websiteURL": "https://github.com/SakuraYH1080/codex-wallpaper-engine",
+    "privacyPolicyURL": "https://github.com/SakuraYH1080/codex-wallpaper-engine",
+    "termsOfServiceURL": "https://github.com/SakuraYH1080/codex-wallpaper-engine",
+    "defaultPrompt": [
+      "给 Codex 换一张壁纸，要能看清字",
+      "把界面调成液态玻璃，壁纸透出来一点",
+      "打开壁纸引擎面板，我要自己调",
+      "让壁纸开机自启，以后点图标就有"
+    ],
+    "brandColor": "#67DCE7",
+    "composerIcon": "./assets/plugin/icon.svg",
+    "logo": "./assets/plugin/icon.svg",
+    "screenshots": []
+  }
+}
